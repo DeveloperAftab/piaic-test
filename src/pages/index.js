@@ -1,21 +1,28 @@
-import React from "react"
+import React, { Children } from "react"
+
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
+import Layout from "../components/layout";
+
+import availableprograms from"../components/availableprograms";
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = ({ data }) => (
+  <Layout >
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+   
+    
+    <h1>Presidential</h1>
+    <h5>for Artificial Intelligence & Computing (PIAIC)</h5>
+    <h1></h1>
+    <p>The mission of PIAIC is to reshape Pakistan by revolutionizing education, research,
+       and business by adopting latest, cutting-edge technologies. Experts are calling this the 4th industrial revolution. 
+       We want Pakistan to become a global hub for AI, data science, cloud native computing, edge computing, blockchain, augmented reality, and internet of things.</p>
+ 
+    
+    
+   
   </Layout>
 )
 
-export default IndexPage
+export default IndexPage;
