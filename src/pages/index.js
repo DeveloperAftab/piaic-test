@@ -1,17 +1,49 @@
 import React, { Children } from "react";
 import Helmet from "react-helmet";
 import { Link } from "gatsby";
-import { StaticQuery, graphql } from "gatsby";
-
+import { StaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SimpleSlider from "../components/Globals/Slider"
 import availableprograms from"../components/availableprograms";
 import SEO from "../components/seo";
 import Presidentv from "../components/Appv"
+import Footer from "../components/footer"
+
+
 
 
 const IndexPage = () => {
 
+  const data = useStaticQuery(graphql`
+  query {
+    mainpage : allContentfulMainpagetitle {
+      edges {
+        node {
+          title
+          subtitle
+          description {
+            description
+          }
+        }
+      }
+    }
+
+    programs :allContentfulAvailableProgram {
+      edges {
+        node {
+          title
+  
+          
+    
+          }
+        }
+      }
+    
+  }
+
+  
+`);
   
   return(
     
@@ -35,14 +67,15 @@ const IndexPage = () => {
               <main className = 'col-sm-8' data-aos-easing='data-aos-easing' data-aos-duration="1500" data-aos-delay="0">
               <div className="d-flex justify-content-center align-items-center hw hh"> 
                 <div className="PresidentInitiative-headings">
-          
+                {data.mainpage.edges.map(({ node }, index) => (
                 <div>
-                <h1 className='PresidentInitiative-heading-h1 pt-0 pt-sm-5'>Presidential Initiative</h1>
-                  <h2 className='PresidentInitiative-heading-h2'>for Artificial Intelligence & Computing (PIAIC)</h2>
-                  <h1></h1>
-                  <p className='PresidentInitiative-heading-p'>The mission of PIAIC is to reshape Pakistan by revolutionizing education, research,
-                    and business by adopting latest, cutting-edge technologies. Experts are calling this the 4th industrial revolution. 
-                    We want Pakistan to become a global hub for AI, data science, cloud native computing, edge computing, blockchain, augmented reality, and internet of things.</p>
+                
+            
+            
+                  <h1 className='PresidentInitiative-heading-h1 pt-0 pt-sm-5'>{node.title}</h1>
+                  <h2 className='PresidentInitiative-heading-h2'>{node.subtitle}</h2>
+                
+                  <p className='PresidentInitiative-heading-p'>{node.description.description}</p>
                   <div className="d-flex my-btn-div justify-content-end align-items-center">
                     <div>
                       <table className="PresidentInitiative-table">
@@ -72,6 +105,7 @@ const IndexPage = () => {
                     </div>
                   </div>
                 </div>
+                ))}
                 </div>
               </div> 
               </main>
@@ -96,7 +130,12 @@ const IndexPage = () => {
                   <div className='col-md-3 col-lg-3 avail-pro-con'>
                     <div className='new-program-box new-ai-box'>
                       <div className='new-upper-bar new-ai-bar'>
-                        <strong className='new-program-title new-ai-title'>artificial intelligence</strong>
+
+                        <strong className='new-program-title new-ai-title'>
+                    
+                          artificial intelligence
+                          
+                          </strong>
                       </div>
                       
                     </div>
@@ -133,6 +172,9 @@ const IndexPage = () => {
                       
                     </div>
                   </div>
+
+
+                  
 
 
 
@@ -262,6 +304,36 @@ const IndexPage = () => {
 
                 </center>
               </div>
+
+
+
+              <div className="supportingBg">
+                <div className="container App supportingCont" style={{paddingBottom: "60px", paddingTop : "50px"}}>
+                  <div className="row">
+                    <div className="col-12 mt-2 d-flex justify-content-center align-items-center">
+                    <p data-aos="fade-down" class="SupportingPartners-heading aos-init aos-animate">Strategic Partners</p>
+                    </div>
+                    <div className="col-12 mt-4 mb-4 supporterIcons d-flex justify-content-center align-items-center">
+                      <div class> 
+                        <ul>
+                        <li><img data-aos="fade-up" data-aos-delay="300" src={require("../images/panacloud.png")} alt="panacloud-logo" class="aos-init aos-animate" /></li>
+                        <li><img data-aos="fade-up" data-aos-delay="300" src={require("../images/psx2.png")} alt="PSX" class="aos-init aos-animate" /></li>
+                        <li><img data-aos="fade-up" data-aos-delay="300" src={require("../images/saylanilogo.png")} alt="panacloud-logo" class="aos-init aos-animate" /></li> 
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+
+
+                  <Footer />
+
+
 
 
              

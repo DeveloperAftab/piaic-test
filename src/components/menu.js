@@ -1,11 +1,45 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
+import { StaticQuery } from "gatsby";
 
 
 
 
 
-const Menu = () => (
+
+const Menu = () => {
+  
+  const data = useStaticQuery(graphql`
+  query {
+    menu : allContentfulMenu{
+      edges{
+        node{
+          title
+          slug
+        }
+      }
+    }
+
+    programs :allContentfulAvailableProgram {
+      edges {
+        node {
+          title
+    
+          }
+        }
+      }
+  }
+
+  
+
+  
+`);
+
+
+
+
+return (
   <div className="navbar aos-init aos-animate">  
     <div className="container">  
       <div className="navbar_cont" >
@@ -18,20 +52,28 @@ const Menu = () => (
           </div>
           </div>
           <div className="navbar-flex nav-flex-2"></div>
+
+
           <div className="navbar-flex nav-flex-3">
           <ul id = "nav-flex-ul" className='navbar-nav ma-auto' >
+
           
-            <a href="/"><li class>Home </li></a>
-            <a href="/howitworks"><li class>How It Works  </li></a>
-            <a href="/apply1"><li class> Apply </li></a>
+            {data.menu.edges.map(({ node }, index) => (
+            <a href={node.slug}><li class>{node.title}</li></a>))}
+            
+            
+
+
             <a ><li class id="about">Available Programs
             <img src={require("../images/drop-down-arrow.svg")}  />
               <ul className="drop1ul">
-                <a href="/artificialInteligent"><li>Artificial Intelligent</li></a>
-                <a href="/"><li>Cloud Native and Mobile Web Computing</li></a>
-                <a href="/Blockchain"><li>Blockchain</li></a>
-                <a href="/iot"><li>Internet Of Things</li></a>
-                <a href="/QM"><li>Quantam Computing</li></a>
+               
+               <div>
+                {data.programs.edges.map(({node}, index) => (
+                  <a href={node.slug}><li>{node.title}</li></a>
+                ))}
+                </div>
+                
               </ul></li></a>
 
 
@@ -52,5 +94,7 @@ const Menu = () => (
     </div> 
   </div>
 )
+
+}
   
 export default Menu;

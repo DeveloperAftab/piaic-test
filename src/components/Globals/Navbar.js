@@ -1,9 +1,12 @@
-import React, { Children, Component} from "react"
+import React, { Component} from "react"
 import logo from "../../images/Logo.svg"
 import { Link } from "gatsby"
+import "../layout.scss";
+import "../style.scss";
+import "../node.scss";
 
 export default class Navbar extends Component {
-    State = {
+  State = {
         navbarOpen:false,
         css: 'collapse navbar-collapse',
         links:[
@@ -11,7 +14,8 @@ export default class Navbar extends Component {
                 id:1,
                 path:'/',
                 text:'home'
-            },{
+            },
+            {
                 id:2,
                 path:'/about',
                 text:'about us'
@@ -22,15 +26,47 @@ export default class Navbar extends Component {
                 path:'/howitworks',
                 text:'How It Works'
 
-            }
+            },
 
         ]
    
     };
+
+
+    navbarHandler = () => {
+        console.log('hello');
+    };
+  
     
-    render(){
+    render() {
         return  ( 
-        <div className = "navbar-flex nav-flex-3">
+            <nav className="navbar-flex nav-flex-3">
+                <Link to="/">home</Link>
+                <button className="navbar-toggler" type="button" onClick="this.navbarHandler"></button>
+                <div >
+                    <ul className="navbar-nav mx-auto">
+                        {
+                            this.state.links.map(link =>{
+                             return(
+                             <li key={link.id} className="nav-item">{link.text}</li>
+                             );   
+                            })
+                        }
+
+                    </ul>
+                </div>
+            </nav>
+        
+      );
+        
+    }
+} 
+
+
+
+/*
+
+<div className = "navbar-flex nav-flex-3">
       
         <ul>
         {
@@ -51,7 +87,5 @@ export default class Navbar extends Component {
         </button>
           
       </div>
-      );
-        
-    }
-} 
+
+      */

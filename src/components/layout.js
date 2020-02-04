@@ -20,6 +20,9 @@ import Menu from "./menu";
 import "./layout.scss";
 import "./style.scss";
 import "./node.scss";
+import Navbar from "./Globals/Navbar";
+
+
 
 
 const Layout = ({ children }) => {
@@ -47,6 +50,7 @@ const Layout = ({ children }) => {
 
     
   `);
+  console.log(data)
   return (
     <>
       <div id="root">
@@ -58,15 +62,16 @@ const Layout = ({ children }) => {
                 
                   <Menu  />
                   
+                  
                 
               
             </div>
 
 
-                <div className="App home-bg">
+                <div >
                 <div > 
-                
-            
+               
+
                     {children}
                 
                 </div> 
